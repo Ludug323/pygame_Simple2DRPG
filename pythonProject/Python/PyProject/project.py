@@ -11,7 +11,7 @@ pg.init()
 
 '''--------------初始設定值-------------'''
 
-pg.display.set_caption("測試遊戲中.....")
+pg.display.set_caption("2D RPG GAME")
 width, height = 722, 714  # 圖片寬度,高度
 screen = pg.display.set_mode((width, height))  # 設定主畫面
 bg = pg.image.load("2D Pixel Dungeon Asset Pack\\background.jpg").convert()  # 載入主畫面背景圖,並且利用convert增加繪製速度
