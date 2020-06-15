@@ -124,16 +124,16 @@ class Player(pg.sprite.Sprite):
     '''得到方向回傳值,0為不可往前,1為可移動方向'''
     def move_direction(self, keyboard, num):  # 正常動作
         time = 0
-        if keyboard[K_a] and self.left_count == 1:
+        if keyboard[K_a] and self.left_count == 1:  # 若按下a鍵而且腳色是面向左邊,則往前移動
+            self.move_count = True                  # move_count為面相方向是否跟按鍵相同
+        elif keyboard[K_d] and self.right_count == 1:  # 若按下d鍵而且腳色是面向左邊,則往前移動
             self.move_count = True
-        elif keyboard[K_d] and self.right_count == 1:
-            self.move_count = True
-        elif keyboard[K_w] or keyboard[K_s]:
+        elif keyboard[K_w] or keyboard[K_s]:  # 若是按ｗｓ鍵,則move_count為True
             self.move_count = True
         else:
             self.move_count = False
         '''left_count and right_count 來判斷玩家面相是否跟按鍵相同,若相同則改變座標,若不同則改變面向'''
-        if num == [1, 1, 1, 1]:
+        if num == [1, 1, 1, 1]:  # 四個方向都可以前進
             if keyboard[K_w]:  # 若按W(往上)
                 Player.time_delay(self, time)
                 if 294 < self.y <= 390:
@@ -174,7 +174,7 @@ class Player(pg.sprite.Sprite):
                 else:
                     self.right_count += 1
                     self.left_count = 0
-        elif num == [0, 1, 1, 1]:
+        elif num == [0, 1, 1, 1]:  # 上方無法前進
             if keyboard[K_s]:  # 若按S(往下)
                 Player.time_delay(self, time)
                 if 294 <= self.y < 390:
@@ -209,7 +209,7 @@ class Player(pg.sprite.Sprite):
                     self.right_count += 1
                     self.left_count = 0
 
-        elif num == [1, 0, 1, 1]:
+        elif num == [1, 0, 1, 1]:  # 下方無法前進
             if keyboard[K_w]:  # 若按W(往上)
                 Player.time_delay(self, time)
                 if 294 < self.y <= 390:
@@ -243,7 +243,7 @@ class Player(pg.sprite.Sprite):
                 else:
                     self.right_count += 1
                     self.left_count = 0
-        elif num == [1, 1, 0, 1]:
+        elif num == [1, 1, 0, 1]:  # 左邊無法前進
             if keyboard[K_w]:  # 若按W(往上)
                 Player.time_delay(self, time)
                 if 294 < self.y <= 390:
@@ -271,7 +271,7 @@ class Player(pg.sprite.Sprite):
                 else:
                     self.right_count += 1
                     self.left_count = 0
-        elif num == [1, 1, 1, 0]:
+        elif num == [1, 1, 1, 0]:  # 右邊無法前進
             if keyboard[K_w]:  # 若按W(往上)
                 Player.time_delay(self, time)
                 if 294 < self.y <= 390:
